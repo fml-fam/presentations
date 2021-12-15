@@ -1,0 +1,19 @@
+---
+title: 'Introducing fmlr: A Novel High-Performance Matrix Framework for R'
+author: "Drew Schmidt"
+date: "12/15/2021"
+output:
+  pdf_document: default
+  html_document: default
+bibliography: references.bib
+csl: ieee.csl
+---
+
+Out-of-the-box, R contains a wealth of matrix operations, mostly in support of numerical computing on double precision data. There are also numerous package extensions extending this core interface to additional kinds of data, from the well-known Matrix package @Matrix, to the gpuR packages @gpur for GPGPU, and of course far too many others to name here. These extensions are generally focused on solving one particular problem; for example, how do we do matrix computing from R on a GPU?
+
+Although an abundance of narrowly-focused extensions is valuable for the language, these come generally with one of two downsides. One is that do not integrate well (or at all) with each other. Another is that these extensions will almost always go out of their way to integrate with the core R matrix framework. But that framework necessarily imposes some performance penalties, such as modifying data in a copy, or having extensions being wed to the slow S4.
+
+To address these and other issues, we introduce the fmlr package @fmlr. It provides numerous matrix and statistics operations for both 32 and 64-bit floating point data, stored on CPU, GPU, or distributed across an MPI cluster, all with a single, unified interface managed by R6 @R6. Additionally, because our interface is entirely novel, we are able to avoid some of the inherent performance penalties imposed by the R matrix interface, including the two mentioned above. If accepted, we plan to show the UseR attendee some of the capabilities of this new framework, its syntax, and some example performance benchmarks.
+
+
+<div id="refs"></div>
