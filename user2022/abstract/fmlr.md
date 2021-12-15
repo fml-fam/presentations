@@ -11,23 +11,27 @@ packages 2 for GPGPU, and of course far too many others to name here.
 These extensions are generally focused on solving one particular
 problem; for example, how do we do matrix computing from R on a GPU?
 
-Although an abundance of narrowly-focused extensions is valuable for the
-language, these come generally with one of two downsides. One is that do
-not integrate well (or at all) with each other. Another is that these
-extensions will almost always go out of their way to integrate with the
-core R matrix framework. But that framework necessarily imposes some
-performance penalties, such as modifying data in a copy, or having
-extensions being wed to the slow S4.
+Most of these kinds of matrix extensions operate at the R level. As
+such, they will almost always go out of their way to integrate with the
+core R matrix framework. But that necessarily imposes some performance
+penalties, such as modifying data in a copy, or having extensions being
+wed to S4, which can make iterated methods very slow. Other approaches
+to tackle this problem include the well-known RcppArmadillo package 3,
+which makes the use of the Armadillo C++ library 4 from within an R
+package very straightforward.
 
-To address these and other issues, we introduce the fmlr package 3. It
-provides numerous matrix and statistics operations for both 32 and
-64-bit floating point data, stored on CPU, GPU, or distributed across an
-MPI cluster, all with a single, unified interface managed by R6 4.
+<!-- TODO bridge these paragraphs -->
+
+Here we introduce the fmlr package 5, a novel framework for matrix
+computing with R whose primary concern is performance. It provides
+numerous matrix and statistics operations for both 32 and 64-bit
+floating point data, stored on CPU, GPU, or distributed across an MPI
+cluster, all with a single, unified interface managed by R6 6.
 Additionally, because our interface is entirely novel, we are able to
 avoid some of the inherent performance penalties imposed by the R matrix
-interface, including the two mentioned above. If accepted, we plan to
-show the UseR attendee some of the capabilities of this new framework,
-its syntax, and some example performance benchmarks.
+interface, including those mentioned above. If accepted, we plan to show
+the UseR attendee some of the capabilities of this new framework, its
+syntax, and some example performance benchmarks.
 
 <div id="refs">
 
@@ -46,16 +50,32 @@ and methods*. 2021.Available:
 
 </div>
 
+<div id="ref-rcpparmadillo">
+
+\[3\] D. Eddelbuettel and C. Sanderson, “RcppArmadillo: Accelerating r
+with high-performance c++ linear algebra,” *Computational Statistics &
+Data Analysis*, vol. 71, pp. 1054–1063, 2014.
+
+</div>
+
+<div id="ref-armadillo">
+
+\[4\] C. Sanderson and R. Curtin, “Armadillo: A template-based c++
+library for linear algebra,” *Journal of Open Source Software*, vol. 1,
+no. 2, p. 26, 2016.
+
+</div>
+
 <div id="ref-fmlr">
 
-\[3\] D. Schmidt, *fmlr: Fused matrix library for r*. 2021.Available:
+\[5\] D. Schmidt, *fmlr: Fused matrix library for r*. 2021.Available:
 <https://hpcran.org/packages/fmlr/index.html>
 
 </div>
 
 <div id="ref-R6">
 
-\[4\] W. Chang, *R6: Encapsulated classes with reference semantics*.
+\[6\] W. Chang, *R6: Encapsulated classes with reference semantics*.
 2021.Available: <https://CRAN.R-project.org/package=R6>
 
 </div>
