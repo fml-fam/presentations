@@ -3,8 +3,7 @@ title: 'Introducing fmlr: A Novel High-Performance Matrix Framework for R'
 author: "Drew Schmidt"
 date: "12/15/2021"
 output:
-  pdf_document: default
-  html_document: default
+  rmarkdown::github_document
 bibliography: references.bib
 csl: ieee.csl
 ---
